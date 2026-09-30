@@ -1,0 +1,2 @@
+[console_scripts]
+reviewagent = ai_code_reviewer.cli:main

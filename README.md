@@ -1,20 +1,20 @@
 # 🤖 ReviewAgent
 
-> An extensible, multi-language AI code review platform built with Python and powered by Google Gemini API.
+> **AI-powered code review, right in your terminal.**
 
-ReviewAgent provides senior-developer level code reviews right in your terminal. It scans individual source files or entire project directories recursively, identifies programming languages, filters reviews by severity level, and presents colorized markdown reports with summary metrics.
+`reviewagent` scans your source code files and folders using Google's Gemini API and instantly reports bugs, security vulnerabilities, and bad practices — like having a senior developer review your code before you push it.
 
 ---
 
-## 🎯 CURRENT FEATURES (Phase 1)
+## ✨ CURRENT FEATURES (Phase 1)
 
-* 📄 **Single-File & Folder Scanning**: Review individual source code files or recursively scan entire directories.
-* 🌐 **Language Detection**: Automatically detects **Python** (`.py`), **Java** (`.java`), **JavaScript** (`.js`, `.jsx`), and **TypeScript** (`.ts`, `.tsx`).
+* 📄 **Single-File & Folder Scanning**: Review individual source code files or recursively scan entire project directories.
+* 🌐 **Language Detection Foundation**: Automatically identifies **Python** (`.py`), **Java** (`.java`), **JavaScript** (`.js`, `.jsx`), and **TypeScript** (`.ts`, `.tsx`).
 * 🎚️ **Severity Filtering**: Filter review depth using `--severity` (`low`, `medium`, `high`, `CRITICAL`, `HIGH`, `MEDIUM`, `LOW`, `INFO`).
-* 💡 **Fast Mode & Optional Refactoring**: Bulleted summary suggestions by default, or full refactored code snippets with `--refactor`.
-* ⚙️ **Config File Support**: Customize settings via `.reviewconfig` or `.reviewconfig.json` in your project folder.
+* 💡 **Fast Mode & Optional Refactoring**: Concise bulleted summary suggestions by default, or full refactored code snippets with `--refactor`.
+* ⚙️ **Config File Support**: Customize settings via `.reviewconfig` or `.reviewconfig.json` in your project root.
 * 📊 **Summary Box**: Colorized Rich panel showing total issues found, category breakdowns (bugs, security, bad practices), and folder zero-issue stats.
-* 🧱 **Modular Architecture**: Base review agent abstractions (`BaseAgent`), structured finding model (`Finding`, `Severity`), and clean component separation (`scanner`, `detector`, `aggregator`, `reporter`).
+* 🧱 **Modular Platform Architecture**: Reusable base review agent abstractions (`BaseAgent`), structured finding model (`Finding`, `Severity`), and clean component separation (`scanner`, `detector`, `aggregator`, `reporter`).
 
 ---
 
@@ -29,9 +29,16 @@ cd reviewagent
 pip install -e .
 ```
 
-### 🔑 API Key Setup
+This installs the `reviewagent` CLI command globally in your environment.
 
-ReviewAgent requires a Google Gemini API key. Set your key in your terminal environment:
+---
+
+## 🔑 Setup
+
+`reviewagent` uses the Gemini API to power its reviews. You will need a Gemini API key:
+
+1. Obtain an API key from [Google AI Studio](https://aistudio.google.com/)
+2. Set it as an environment variable in your shell:
 
 **PowerShell (Windows):**
 ```powershell
@@ -42,6 +49,8 @@ $env:GEMINI_API_KEY="your_gemini_api_key_here"
 ```bash
 export GEMINI_API_KEY="your_gemini_api_key_here"
 ```
+
+> Your key is never stored or transmitted anywhere except directly to Google's API.
 
 ---
 
@@ -82,8 +91,8 @@ You can create an optional `.reviewconfig.json` file in your project root:
 {
   "min_severity": "LOW",
   "default_model": "gemini-3.6-flash",
-  "enabled_categories": ["bugs", "security", "bad_practices"],
-  "excluded_dirs": [".git", ".venv", "venv", "__pycache__", "node_modules", "build", "dist"],
+  "enabled_categories": ["bugs", "security", "bad_practices", "performance", "quality"],
+  "excluded_dirs": [".git", ".venv", "venv", "__pycache__", "node_modules", "build", "dist", ".idea", ".vscode"],
   "supported_languages": ["Python", "Java", "JavaScript", "TypeScript"]
 }
 ```
@@ -129,24 +138,22 @@ pytest -v
 
 ---
 
-## ⚠️ Current Limitations
-
-- AST-level deep static analysis for non-Python languages is not yet included (files are reviewed via Gemini API prompt instructions).
-- Parallel multi-threading across multiple files executes sequentially to stay within API rate limit quotas.
-
----
-
 ## 🗺️ FUTURE ROADMAP (Phase 2+)
 
-* 🛡️ **Specialized Review Agents**: `SecurityAgent`, `BugAgent`, `CodeQualityAgent`, `PerformanceAgent`.
-* 🤖 **Multi-Agent Orchestration**: Parallel evaluation using specialized prompt agents.
-* 📝 **HTML & JSON Report Generation**: Export review reports to `.html` or `.json` files.
-* 🐙 **GitHub Actions & PR Integration**: Automated PR review bot posting inline PR comments.
-* 🛠️ **Language AST Analysis**: Deep static analysis parsers for Java, JavaScript, and TypeScript.
-* 📦 **PyPI Distribution**: Official package distribution on PyPI.
+- 🛡️ **Specialized Review Agents**: `SecurityAgent`, `BugAgent`, `CodeQualityAgent`, `PerformanceAgent`
+- 🤖 **Multi-Agent Orchestration**: Parallel evaluation using specialized prompt agents
+- 📝 **HTML & JSON Report Generation**: Export review reports to `.html` or `.json` files
+- 🐙 **GitHub Actions & PR Integration**: Automated PR review bot posting inline PR comments
+- 📦 **PyPI Distribution**: Official package distribution on PyPI
 
 ---
 
 ## 📄 License
 
 This project is licensed under the [MIT License](LICENSE).
+
+---
+
+## 🙋 Author
+
+Built by [williams1604](https://github.com/williams1604) — feedback, issues, and stars are always appreciated! ⭐

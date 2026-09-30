@@ -1,0 +1,28 @@
+{
+  "min_severity": "LOW",
+  "default_model": "gemini-3.6-flash",
+  "enabled_categories": [
+    "bugs",
+    "security",
+    "bad_practices",
+    "performance",
+    "quality"
+  ],
+  "excluded_dirs": [
+    ".git",
+    ".venv",
+    "venv",
+    "__pycache__",
+    "node_modules",
+    "build",
+    "dist",
+    ".idea",
+    ".vscode"
+  ],
+  "supported_languages": [
+    "Python",
+    "Java",
+    "JavaScript",
+    "TypeScript"
+  ]
+}

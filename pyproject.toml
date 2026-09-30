@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "reviewagent"
+version = "0.2.0"
+description = "Extensible multi-language AI code review platform."
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+dependencies = [
+    "google-genai>=0.1.0",
+    "rich>=13.0.0",
+]
+
+[project.scripts]
+reviewagent = "reviewagent.cli.main:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
